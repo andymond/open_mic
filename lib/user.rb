@@ -17,4 +17,20 @@ class User
     listener.jokes << new_joke
   end
 
+  def perform_routine_for(listener)
+    jokes.each do |joke|
+      listener.jokes << joke
+    end
+  end
+
+  def learn_routine(joke_file)
+    file = File.readlines(joke_file)
+    file.shift
+    routine = file
+    new_routine = routine.each do |joke|
+      learn(joke)
+    end
+    new_routine
+  end
+
 end
